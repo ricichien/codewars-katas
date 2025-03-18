@@ -1,3 +1,46 @@
+// Highest and Lowest
+
+// In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number.
+
+// Examples
+// highAndLow("1 2 3 4 5"); // return "5 1"
+// highAndLow("1 2 -3 4 5"); // return "5 -3"
+// highAndLow("1 9 3 4 -5"); // return "9 -5"
+// Notes
+// All numbers are valid Int32, no need to validate them.
+// There will always be at least one number in the input string.
+// Output string must be two numbers separated by a single space, and highest number is first.
+
+function highAndLow(numbers){
+  stringToNumber = numbers.split(' ').map(Number);
+  
+  const highest = Math.max(...stringToNumber); 
+  const lowest = Math.min(...stringToNumber);
+  
+  return `${highest} ${lowest}`
+}
+
+// Or
+
+function highAndLow(numbers){
+  stringToNumber = numbers.split(' ').map(Number);
+  
+  let highest = stringToNumber[0]
+  let lowest = stringToNumber[0]
+  
+  for (i = 1; i < stringToNumber.length; i++) {
+    if (stringToNumber[i] > highest) {
+      highest = stringToNumber[i]
+    }
+    
+    if (stringToNumber[i] < lowest) {
+      lowest = stringToNumber[i]
+    }
+  }
+  
+  return `${highest} ${lowest}`
+}
+
 // List Filtering
 
 // In this kata you will create a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out.
