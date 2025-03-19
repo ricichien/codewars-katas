@@ -1,3 +1,70 @@
+// Sum of Digits / Digital Root
+
+// Digital root is the recursive sum of all the digits in a number.
+
+// Given n, take the sum of the digits of n. If that value has more than one digit, continue reducing in this way until a single-digit number is produced. The input will be a non-negative integer.
+
+// Examples
+//     16  -->  1 + 6 = 7
+//    942  -->  9 + 4 + 2 = 15  -->  1 + 5 = 6
+// 132189  -->  1 + 3 + 2 + 1 + 8 + 9 = 24  -->  2 + 4 = 6
+// 493193  -->  4 + 9 + 3 + 1 + 9 + 3 = 29  -->  2 + 9 = 11  -->  1 + 1 = 2
+
+function digitalRoot(n) {
+  let sum = n
+  while (sum >= 10){
+  let myArray = n.toString().split('').map(Number)
+  sum = 0
+  for (let i = 0; i < myArray.length; i++) {
+    sum += myArray[i]
+    }
+  }
+  return sum
+}
+
+// Or 
+
+function digitalRoot(n) {
+  let sum = n;
+  while (sum >= 10) { // Continua até o número ter apenas um dígito
+    sum = 0;
+    // Enquanto sum for maior ou igual a 10, pegamos os dígitos e somamos
+    while (n > 0) {
+      sum += n % 10; // Pega o último dígito de n
+      n = Math.floor(n / 10); // Remove o último dígito de n
+    }
+    n = sum; // Atualiza n para ser a soma dos dígitos
+  }
+  return sum; // Retorna o número de um dígito
+}
+
+// Is a number prime? 
+
+// Define a function that takes an integer argument and returns a logical value true or false depending on if the integer is a prime.
+
+// Per Wikipedia, a prime number ( or a prime ) is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+
+// Requirements
+// You can assume you will be given an integer input.
+// You can not assume that the integer will be only positive. You may be given negative numbers as well ( or 0 ).
+// NOTE on performance: There are no fancy optimizations required, but still the most trivial solutions might time out. Numbers go up to 2^31 ( or similar, depending on language ). Looping all the way up to n, or n/2, will be too slow.
+// Example
+// is_prime(1)  /* false */
+// is_prime(2)  /* true  */
+// is_prime(-1) /* false */
+
+
+function isPrime(num) {
+  if (num < 2) return false
+  
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) {
+      return false
+    };
+  }
+    return true
+}
+
 // Highest and Lowest
 
 // In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number.
