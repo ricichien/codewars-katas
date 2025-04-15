@@ -1,3 +1,30 @@
+// RGB To Hex Conversion
+
+// The rgb function is incomplete. Complete it so that passing in RGB decimal values will result in a hexadecimal representation being returned. Valid decimal values for RGB are 0 - 255. Any values that fall out of that range must be rounded to the closest valid value.
+
+// Note: Your answer should always be 6 characters long, the shorthand with 3 will not work here.
+
+// Examples (input --> output):
+// 255, 255, 255 --> "FFFFFF"
+// 255, 255, 300 --> "FFFFFF"
+// 0, 0, 0       --> "000000"
+// 148, 0, 211   --> "9400D3"
+
+function rgb(r, g, b) {
+  // Garante que o valor fique entre 0 e 255
+  function clamp(val) {
+    return Math.max(0, Math.min(255, val));
+  }
+
+  // Converte para hexadecimal e formata com dois dígitos
+  function toHex(val) {
+    return clamp(val).toString(16).toUpperCase().padStart(2, '0');
+  }
+
+  // Concatena os 3 valores já convertidos
+  return toHex(r) + toHex(g) + toHex(b);
+}
+
 // Create a function that takes a Roman numeral as its argument and returns its value as a numeric decimal integer. You don't need to validate the form of the Roman numeral.
 
 // Modern Roman numerals are written by expressing each decimal digit of the number to be encoded separately, starting with the leftmost digit and skipping any 0s. So 1990 is rendered "MCMXC" (1000 = M, 900 = CM, 90 = XC) and 2008 is rendered "MMVIII" (2000 = MM, 8 = VIII). The Roman numeral for 1666, "MDCLXVI", uses each letter in descending order.
