@@ -1,3 +1,13 @@
+// Dada uma string com palavras separadas por espaços, inverta cada palavra individualmente, mantendo a ordem das palavras.
+
+function reverseWords(str) {
+  return str
+    .split(" ")
+    .map(word => word.split("").reverse().join(""))
+    .join(" ");
+}
+
+
 // RGB To Hex Conversion
 
 // The rgb function is incomplete. Complete it so that passing in RGB decimal values will result in a hexadecimal representation being returned. Valid decimal values for RGB are 0 - 255. Any values that fall out of that range must be rounded to the closest valid value.
