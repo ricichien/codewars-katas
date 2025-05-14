@@ -1,3 +1,23 @@
+// Você recebe um array de números inteiros únicos entre 1 e n, mas um número está faltando. Escreva uma função que encontre esse número sem usar métodos de array além de .length. Use for.
+
+function findMissingNumber(arr) {
+  // Primeiro descobrimos o n
+  const n = arr.length + 1;
+
+  // Soma teórica de 1 até n
+  const expectedSum = (n * (n + 1)) / 2;
+
+  // Agora vamos somar o que temos usando for
+  let actualSum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    actualSum += arr[i];
+  }
+
+  // A diferença é o número faltando
+  return expectedSum - actualSum;
+}
+
+
 // Dada uma string com palavras separadas por espaços, inverta cada palavra individualmente, mantendo a ordem das palavras.
 
 function reverseWords(str) {
