@@ -70,9 +70,73 @@ for (let linha = 0; linha < matrix.length; linha++) {
 }
 ```
 
+### F) Acumulador (soma, maior, menor, produto, média)
+
+_Aparece em quase toda prova — é o "Padrão A" com uma variação: em vez de contar quantas vezes algo acontece, você vai guardando/atualizando um valor a cada volta._
+
+```typescript
+// Soma
+let soma = 0;
+for (const n of numeros) {
+  soma += n;
+}
+
+// Maior elemento
+let maior = numeros[0];
+for (const n of numeros) {
+  if (n > maior) maior = n;
+}
+
+// Menor elemento — mesma lógica, troca > por <
+// Produto — mesma lógica da soma, mas começa em 1 (não em 0!) e usa *=
+// Média — soma tudo, depois divide por numeros.length (cuidado: array vazio quebra a divisão)
+```
+
+- Variável inicializada **fora** do loop, sempre.
+- Para "maior"/"menor": **não inicializa com `0`** — inicializa com o **primeiro elemento do array** (se todos os números forem negativos, começar em `0` dá resultado errado).
+
 ---
 
-## 3. Checklist de bugs comuns (revisar ANTES de submeter)
+## 3. Árvore de decisão — identifique o padrão ANTES de implementar
+
+```
+✓ Preciso devolver um único valor?
+  → number / boolean / string (Padrão A ou F)
+
+✓ Preciso devolver vários valores?
+  → criar um array (Padrão B, ou A/F guardando num array em vez de uma variável)
+
+✓ Preciso comparar vizinhos (elemento anterior/seguinte)?
+  → provavelmente precisa de índice (for), não for...of
+
+✓ Preciso apenas olhar cada elemento, sem me importar com a posição dele?
+  → for...of é suficiente
+
+✓ Preciso lembrar quantas vezes algo apareceu, ou associar uma chave a um valor?
+  → Map (Padrão C)
+
+✓ Preciso olhar grupos de elementos consecutivos (trios, pares, janelas)?
+  → Sliding Window (Padrão B)
+
+✓ Preciso ir somando/comparando um valor conforme percorro o array?
+  → Acumulador (Padrão F)
+```
+
+Isso evita o erro mais caro: começar a escrever código antes de saber qual ferramenta usar.
+
+## 4. A dificuldade real não é a sintaxe — é traduzir o enunciado em lógica
+
+Pelo que vimos até aqui (principalmente no zigzag): você não trava no `for`, no `if`, ou no TypeScript em si. Você trava quando o enunciado descreve um conceito ("zigzag", "pico", "vale") e seu cérebro ainda não converteu isso numa regra concreta e mecânica.
+
+**Hábito que resolve isso, antes de qualquer linha de código:**
+
+1. Pega o **exemplo dado no enunciado** e refaz ele na mão, devagar, anotando o que está acontecendo em cada passo (como fizemos: "índice 0: 1<2>1, é zigzag").
+2. Só depois que você consegue **explicar em português, sem usar nenhuma palavra do enunciado original**, o que faz algo ser ou não ser o que o problema pede, você está pronto pra pensar em código.
+3. Se em 2-3 minutos você não conseguiu reescrever a regra com suas próprias palavras, o problema não é de programação ainda — é de **entendimento**. Releia o enunciado, ou refaça o exemplo na mão de novo, antes de tentar codar.
+
+---
+
+## 5. Checklist de bugs comuns (revisar ANTES de submeter)
 
 - [ ] `return` final está **fora** do loop (quando precisa processar tudo antes de devolver)?
 - [ ] A condição do loop não deixa acessar índice fora dos limites? (teste mentalmente com o **maior** valor de `i`)
@@ -84,7 +148,7 @@ for (let linha = 0; linha < matrix.length; linha++) {
 
 ---
 
-## 4. Sintaxe TS — referência rápida (o que você já usou)
+## 6. Sintaxe TS — referência rápida (o que você já usou)
 
 | O que fazer              | Sintaxe                                                          |
 | ------------------------ | ---------------------------------------------------------------- |
@@ -100,7 +164,7 @@ for (let linha = 0; linha < matrix.length; linha++) {
 
 ---
 
-## 5. Gestão de tempo na prova real (70 min, 4 questões)
+## 7. Gestão de tempo na prova real (70 min, 4 questões)
 
 | Questão | Tempo sugerido | Estratégia                                                                                                       |
 | ------- | -------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -108,4 +172,4 @@ for (let linha = 0; linha < matrix.length; linha++) {
 | Q2 / Q3 | 20–25 min cada | Aplica os padrões da seção 2; se travar 5 min sem rumo, tenta outro padrão                                       |
 | Q4      | O que sobrar   | Se não der pra resolver bem, **submete uma solução de força-bruta funcionando** — vale mais que deixar em branco |
 
-**Antes de cada submissão:** roda o checklist da seção 3 mentalmente. Leva 1-2 min e evita perder pontos por bug bobo.
+**Antes de cada submissão:** roda o checklist da seção 5 mentalmente. Leva 1-2 min e evita perder pontos por bug bobo.

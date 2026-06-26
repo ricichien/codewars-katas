@@ -131,3 +131,46 @@ function isZigzag(numbers: number[]) {
   }
   return resultado;
 }
+
+// 1) (Padrão A — aquecimento)
+
+// Escreva solution(numbers: number[]) que retorna true se o array está em ordem estritamente crescente (cada número maior que o anterior), e false caso contrário. Array com 1 elemento conta como true.
+
+// 2) (Padrão B — janela deslizante, parecido com o zigzag)
+
+// Escreva solution(numbers: number[]) que retorna um array onde a posição i é a soma de numbers[i] e numbers[i+1] (soma de pares consecutivos). Para [1, 2, 3, 4], o resultado é [3, 5, 7].
+
+// 3) (Padrão C — contagem de frequência, mais difícil)
+
+// Escreva solution(numbers: number[]) que retorna o(s) número(s) que aparece(m) mais de uma vez no array, como um novo array (sem duplicar o mesmo número repetido na saída). Para [1, 2, 3, 2, 1, 1], o resultado deve conter 1 e 2 (em qualquer ordem).
+
+function isIncreasing(numbers: number[]) {
+  for (let i = 0; i < numbers.length - 1; i++) {
+    if (numbers[i + 1] < numbers[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function zigzagSum(numbers: number[]) {
+  let resultado: number[] = [];
+  for (let i = 0; i < numbers.length - 1; i++) {
+    resultado.push(numbers[i] + numbers[i + 1]);
+  }
+  return resultado;
+}
+
+function repeatedNumber(numbers: number[]) {
+  let resultado: number[] = [];
+  const contagem = new Map<number, number>();
+  for (const item of numbers) {
+    contagem.set(item, (contagem.get(item) ?? 0) + 1);
+  }
+  for (const numero of contagem.keys()) {
+    if ((contagem.get(numero) ?? 0) > 1) {
+      resultado.push(numero);
+    }
+  }
+  return resultado;
+}
