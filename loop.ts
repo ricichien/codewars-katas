@@ -174,3 +174,49 @@ function repeatedNumber(numbers: number[]) {
   }
   return resultado;
 }
+
+// 1) (Two-pointer — padrão novo, ainda não testado na prática)
+
+// Dado um array de números ordenado e um número alvo, retorne true se existirem dois números no array cuja soma seja exatamente igual a alvo, e false caso contrário.
+
+// Exemplo: numbers = [1, 3, 5, 8, 11], alvo = 9 → true (porque 1 + 8 = 9).
+
+// Exemplo: numbers = [1, 3, 5, 8, 11], alvo = 20 → false.
+
+// Dica de raciocínio (sem resolver pra você): por que faz sentido usar um índice começando no início e outro no fim, e mover eles "um em direção ao outro" dependendo se a soma atual está maior ou menor que o alvo?
+
+// 2) (Sliding window + acumulador — combina dois padrões que você já sabe)
+
+// Dado um array de números e um número k, retorne a maior soma possível entre k números consecutivos do array.
+
+// Exemplo: numbers = [2, 1, 5, 1, 3, 2], k = 3 → 9 (porque 5 + 1 + 3 = 9, que é a maior soma de 3 números seguidos).
+
+// 3) (Mais difícil — Map com cuidado extra na ordem)
+
+// Dado um array de números, retorne o primeiro número que NÃO se repete (aparece exatamente uma vez). Se todos se repetem, retorne -1.
+
+// Exemplo: numbers = [2, 3, 3, 2, 5, 7, 7] → 5 (porque 2 e 3 se repetem, e 5 é o primeiro que aparece só uma vez).
+
+// Esse último tem uma pegadinha: o padrão de Map que você já domina te dá a contagem, mas não garante a ordem certa de quem é "primeiro" — pensa em quantas vezes você precisa percorrer o array original, e em que ordem.
+
+function findTarget(numbers: number[], target: number) {
+  for (let start = 0; start < numbers.length - 1; start++) {
+    for (let end = start + 1; end < numbers.length; end++) {
+      if (numbers[start] + numbers[end] === target) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function findTargetEfficiently(numbers: number[], target: number) {
+  let start = 0;
+  let end = numbers.length - 1;
+  while (start < end) {
+    if (numbers[start] + numbers[end] === target) return true;
+    else if (numbers[start] + numbers[end] < target) start++;
+    else end--;
+  }
+  return false;
+}
