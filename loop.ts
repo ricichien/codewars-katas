@@ -220,3 +220,15 @@ function findTargetEfficiently(numbers: number[], target: number) {
   }
   return false;
 }
+
+function findBiggerNumber(numbers: number[], k: number) {
+  let maior = 0;
+  for (let i = 0; i < numbers.length - k + 1; i++) {
+    let sum = 0;
+    for (let j = i; j <= i + k - 1; j++) {
+      sum += numbers[j];
+    }
+    if (sum > maior) maior = sum;
+  }
+  return maior;
+}
