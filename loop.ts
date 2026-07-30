@@ -232,3 +232,21 @@ function findBiggerNumber(numbers: number[], k: number) {
   }
   return maior;
 }
+
+function solution(a: number[]): number {
+  const contagem = new Map<number, number>();
+  let tupla: number;
+  for (let i = 0; i < a.length - (3 - 1); i++) {
+    for (const item of a) {
+      contagem.set(item, (contagem.get(item) ?? 0) + 1);
+      if (
+        contagem.get(a[i]) === contagem.get(a[i + 1]) ||
+        contagem.get(a[i]) === contagem.get(a[i + 2]) ||
+        contagem.get(a[i + 1]) === contagem.get(a[i + 2])
+      ) {
+        tupla += 1;
+      }
+    }
+  }
+  return tupla;
+}
