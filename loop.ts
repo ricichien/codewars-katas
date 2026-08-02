@@ -250,3 +250,17 @@ function solution(a: number[]): number {
   }
   return tupla;
 }
+
+// Simulation
+// Qual é o estado que muda durante a execução? (Saldo, Vida, Estoque, Temperatura, Desconto, Energia, etc)
+// O que faz esse estado aumentar?
+// O que faz esse estado diminuir?
+// Quando eu devo retornar esse estado?
+
+function finalBalance(operations: number[]) {
+  let balance = 0;
+  for (let i = 0; operations.length > i; i++) {
+    balance += operations[i];
+  }
+  return balance;
+}
