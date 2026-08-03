@@ -257,10 +257,26 @@ function solution(a: number[]): number {
 // O que faz esse estado diminuir?
 // Quando eu devo retornar esse estado?
 
-function finalBalance(operations: number[]) {
+function finalBalanceWithTax(numbers: number[]) {
   let balance = 0;
-  for (let i = 0; operations.length > i; i++) {
-    balance += operations[i];
+  for (let i = 0; numbers.length > i; i++) {
+    if (numbers[i] < 0) {
+      balance += numbers[i] - 3;
+    } else balance += numbers[i];
   }
   return balance;
+}
+
+//Frequencia (Map)
+function usingMap(numbers: number[]) {
+  let drawer = new Map<number, number>();
+  for (let i = 0; numbers.length > i; i++) {
+    if (drawer.has(numbers[i])) {
+      let value = drawer.get(numbers[i])!;
+      drawer.set(numbers[i], value + 1);
+    } else {
+      drawer.set(numbers[i], 1);
+    }
+  }
+  return drawer;
 }

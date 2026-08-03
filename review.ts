@@ -1,12 +1,13 @@
-function countVowels(string: string) {
+function countVowels(text: string) {
   let counter = 0;
-  for (let i = 0; i < string.length; i++) {
+  text = text.toLowerCase();
+  for (let i = 0; text.length > i; i++) {
     if (
-      string[i] === "a" ||
-      string[i] === "e" ||
-      string[i] === "i" ||
-      string[i] === "o" ||
-      string[i] === "u"
+      text[i] === "a" ||
+      text[i] === "e" ||
+      text[i] === "i" ||
+      text[i] === "o" ||
+      text[i] === "u"
     ) {
       counter += 1;
     }
@@ -95,7 +96,7 @@ function sumEven(numbers: number[]): number {
 
 function findMax(number: number[]) {
   let maxNumber = number[0];
-  for (let i = 0; number.length > i; i++) {
+  for (let i = 1; number.length > i; i++) {
     if (number[i] > maxNumber) {
       maxNumber = number[i];
     }
@@ -105,10 +106,18 @@ function findMax(number: number[]) {
 
 function findMin(number: number[]) {
   let minNumber = number[0];
-  for (let i = 0; number.length > i; i++) {
+  for (let i = 1; number.length > i; i++) {
     if (number[i] < minNumber) {
       minNumber = number[i];
     }
   }
   return minNumber;
+}
+
+function finalBalance(numbers: number[]) {
+  let balance = 0;
+  for (let i = 0; numbers.length > i; i++) {
+    balance += numbers[i];
+  }
+  return balance;
 }
