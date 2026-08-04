@@ -312,4 +312,26 @@ function usingMapToReturnOnlyRepeated(numbers: number[]) {
   return array;
 }
 
-function usingMapToFindChampion
+function findMostFrequent(numbers: number[]): number {
+  let repeated = new Map<number, number>();
+  let mostFrequent = 0;
+  let frequency = 0;
+  for (let i = 0; numbers.length > i; i++) {
+    if (repeated.has(numbers[i])) {
+      let exists = repeated.get(numbers[i])!;
+      repeated.set(numbers[i], exists + 1);
+    } else {
+      repeated.set(numbers[i], 1);
+    }
+  }
+  for (const numero of repeated.keys()) {
+    // retornar key com maior frequencia
+    // eu já sei pegar a frequencia
+    let value = repeated.get(numero)!;
+    if (frequency < value) {
+      frequency = value;
+      mostFrequent = numero;
+    }
+  }
+  return mostFrequent;
+}
