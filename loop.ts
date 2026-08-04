@@ -268,6 +268,17 @@ function finalBalanceWithTax(numbers: number[]) {
 }
 
 //Frequencia (Map)
+// cria um Map vazio
+// para cada número
+//     existe?
+//         sim
+//             pega a quantidade
+//             soma 1
+//             salva
+//         não
+//             cria com 1
+// retorna o Map
+
 function usingMap(numbers: number[]) {
   let drawer = new Map<number, number>();
   for (let i = 0; numbers.length > i; i++) {
@@ -280,3 +291,25 @@ function usingMap(numbers: number[]) {
   }
   return drawer;
 }
+
+function usingMapToReturnOnlyRepeated(numbers: number[]) {
+  let repeated = new Map<number, number>();
+  let array: number[] = [];
+  for (let i = 0; numbers.length > i; i++) {
+    if (repeated.has(numbers[i])) {
+      let exists = repeated.get(numbers[i])!;
+      repeated.set(numbers[i], exists + 1);
+    } else {
+      repeated.set(numbers[i], 1);
+    }
+  }
+  for (const numero of repeated.keys()) {
+    let value = repeated.get(numero)!;
+    if (value > 1) {
+      array.push(numero);
+    }
+  }
+  return array;
+}
+
+function usingMapToFindChampion
