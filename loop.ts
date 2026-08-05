@@ -335,3 +335,16 @@ function findMostFrequent(numbers: number[]): number {
   }
   return mostFrequent;
 }
+
+// [5, 3, 7, 3, 5]
+function firstRepeated(numbers: number[]): number {
+  let repeated = new Map<number, number>();
+  for (let i = 0; numbers.length > i; i++) {
+    if (repeated.has(numbers[i])) {
+      return numbers[i];
+    } else {
+      repeated.set(numbers[i], 1);
+    }
+  }
+  return -1;
+}
