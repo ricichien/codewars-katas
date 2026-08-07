@@ -233,23 +233,23 @@ function findBiggerNumber(numbers: number[], k: number) {
   return maior;
 }
 
-function solution(a: number[]): number {
-  const contagem = new Map<number, number>();
-  let tupla: number;
-  for (let i = 0; i < a.length - (3 - 1); i++) {
-    for (const item of a) {
-      contagem.set(item, (contagem.get(item) ?? 0) + 1);
-      if (
-        contagem.get(a[i]) === contagem.get(a[i + 1]) ||
-        contagem.get(a[i]) === contagem.get(a[i + 2]) ||
-        contagem.get(a[i + 1]) === contagem.get(a[i + 2])
-      ) {
-        tupla += 1;
-      }
-    }
-  }
-  return tupla;
-}
+// function solution(a: number[]): number {
+//   const contagem = new Map<number, number>();
+//   let tupla: number;
+//   for (let i = 0; i < a.length - (3 - 1); i++) {
+//     for (const item of a) {
+//       contagem.set(item, (contagem.get(item) ?? 0) + 1);
+//       if (
+//         contagem.get(a[i]) === contagem.get(a[i + 1]) ||
+//         contagem.get(a[i]) === contagem.get(a[i + 2]) ||
+//         contagem.get(a[i + 1]) === contagem.get(a[i + 2])
+//       ) {
+//         tupla += 1;
+//       }
+//     }
+//   }
+//   return tupla;
+// }
 
 // Simulation
 // Qual é o estado que muda durante a execução? (Saldo, Vida, Estoque, Temperatura, Desconto, Energia, etc)
@@ -347,4 +347,24 @@ function firstRepeated(numbers: number[]): number {
     }
   }
   return -1;
+}
+
+function soloNumber(numbers: number[]): number[] {
+  let solo = new Map<number, number>();
+  let soloNumbers: number[] = [];
+  for (let i = 0; numbers.length > i; i++) {
+    if (solo.has(numbers[i])) {
+      let value = solo.get(numbers[i])!;
+      solo.set(numbers[i], value + 1);
+    } else {
+      solo.set(numbers[i], 1);
+    }
+  }
+  for (const numero of solo.keys()) {
+    let value = solo.get(numero)!;
+    if (value === 1) {
+      soloNumbers.push(numero);
+    }
+  }
+  return soloNumbers;
 }
