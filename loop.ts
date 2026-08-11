@@ -368,3 +368,18 @@ function soloNumber(numbers: number[]): number[] {
   }
   return soloNumbers;
 }
+
+// radar
+function isPalindrome(text: string): boolean {
+  let left = 0;
+  let right = text.length - 1;
+  while (left < right) {
+    if (text[left] !== text[right]) {
+      return false;
+    } else if (text[left] === text[right]) {
+      right--;
+      left++;
+    }
+  }
+  return true;
+}
