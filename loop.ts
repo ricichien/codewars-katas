@@ -383,3 +383,54 @@ function isPalindrome(text: string): boolean {
   }
   return true;
 }
+
+function isPalindromeNumber(numbers: number[]): boolean {
+  let first = 0;
+  let last = numbers.length - 1;
+  while (last > first) {
+    if (numbers[first] !== numbers[last]) {
+      return false;
+    } else {
+      first++;
+      last--;
+    }
+  }
+  return true;
+}
+
+// Two Pointers
+// [1, 2, 3, 4, 6, 8, 10]
+// for: "Tenho uma sequência/quantidade de iterações que quero percorrer."
+
+// while: "Continuo fazendo isso enquanto uma condição for verdadeira."
+
+function targetValue(numbers: number[]) {
+  let left = 0;
+  let right = numbers.length - 1;
+  const target = 10;
+  while (left < right) {
+    if (numbers[left] + numbers[right] === target) {
+      return true;
+    } else if (numbers[left] + numbers[right] > target) {
+      right--;
+    } else {
+      left++;
+    }
+  }
+  return false;
+}
+
+function findPair(numbers: number[]) {
+  let response = [];
+  let left = 0;
+  let right = numbers.length - 1;
+  const target = 10;
+  while (left > right) {
+    if (numbers[left] + numbers[right] === target) {
+      return response.push(numbers[left], numbers[right]);
+    } else if (numbers[left] + numbers[right] > target) {
+      right--;
+    } else left++;
+  }
+  return [];
+}
