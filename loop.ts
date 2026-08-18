@@ -434,3 +434,71 @@ function findPair(numbers: number[]) {
   }
   return [];
 }
+
+// function countEven(numbers: number[]) {
+//   let counter = 0;
+//   for (let i = 0; numbers.length > i; i++) {
+//     if (numbers[i] % 2 === 0) {
+//       counter += 1;
+//     }
+//   }
+//   return counter;
+// }
+
+// function findMax(numbers: number[]) {
+//   let max = numbers[0];
+//   for (let i = 1; numbers.length > i; i++) {
+//     if (numbers[i] > max) {
+//       max = numbers[i];
+//     }
+//   }
+//   return max;
+// }
+
+// function findFrequency(numbers: number[]) {
+//   let frequency = new Map<number, number>();
+//   for (let i = 0; numbers.length > i; i++) {
+//     if (frequency.has(numbers[i])) {
+//       let value = frequency.get(numbers[i])!;
+//       frequency.set(numbers[i], value + 1);
+//     } else {
+//       frequency.set(numbers[i], 1);
+//     }
+//   }
+//   return frequency;
+// }
+
+// function findRepeated(numbers: number[]) {
+//   let frequency = new Map<number, number>();
+//   let repeated: number[] = [];
+
+//   for (let i = 0; numbers.length > i; i++) {
+//     if (frequency.has(numbers[i])) {
+//       let value = frequency.get(numbers[i])!;
+//       frequency.set(numbers[i], value + 1);
+//       if (!repeated.includes(numbers[i])) {
+//         repeated.push(numbers[i]);
+//       }
+//     } else {
+//       frequency.set(numbers[i], 1);
+//     }
+//   }
+
+//   return repeated;
+// }
+
+function removeDuplicates(numbers: number[]) {
+  if (numbers.length === 0) {
+    return [];
+  }
+
+  let i = 0;
+
+  for (let j = 1; j < numbers.length; j++) {
+    if (numbers[j] !== numbers[i]) {
+      i++;
+      numbers[i] = numbers[j];
+    }
+  }
+  return numbers.slice(0, i + 1);
+}
