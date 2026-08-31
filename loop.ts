@@ -502,3 +502,31 @@ function removeDuplicates(numbers: number[]) {
   }
   return numbers.slice(0, i + 1);
 }
+
+// filter
+const greatNumbers = [3, 8, 12, 5, 20, 7, 15];
+function onlyGreaterThanTen(greatNumbers: number[]): number[] {
+  return greatNumbers.filter((greatNumbers) => greatNumbers > 10);
+}
+
+function findExactlyTwice(numbers: number[]): number[] {
+  let map = new Map<number, number>();
+  let twice: number[] = [];
+  for (let i = 0; numbers.length > i; i++) {
+    if (map.has(numbers[i])) {
+      let num = map.get(numbers[i])!;
+      map.set(numbers[i], num + 1);
+    } else {
+      map.set(numbers[i], 1);
+    }
+  }
+  for (const number of map.keys()) {
+    let value = map.get(number)!;
+    if (value === 2) {
+      twice.push(number);
+    }
+  }
+  return twice;
+}
+
+function findMostFrequent(numbers: number[]): number {}
