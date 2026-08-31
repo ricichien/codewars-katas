@@ -529,4 +529,24 @@ function findExactlyTwice(numbers: number[]): number[] {
   return twice;
 }
 
-function findMostFrequent(numbers: number[]): number {}
+// function findMostFrequent(numbers: number[]): number {
+//   let map = new Map<number, number>();
+//   let mostFrequent = numbers[0];
+//   let frequency = 0;
+//   for (let i = 0; numbers.length > i; i++) {
+//     if (map.has(numbers[i])) {
+//       let num = map.get(numbers[i])!;
+//       map.set(numbers[i], num + 1);
+//     } else {
+//       map.set(numbers[i], 1);
+//     }
+//   }
+//   for (const number of map.keys()) {
+//     let value = map.get(number)!;
+//     if (value > frequency) {
+//       frequency = value;
+//       mostFrequent = number;
+//     }
+//   }
+//   return mostFrequent;
+// }
