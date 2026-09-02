@@ -551,31 +551,26 @@ function findExactlyTwice(numbers: number[]): number[] {
 //   return mostFrequent;
 // }
 
-// function maxSum(numbers: number[], k: number): number {
-//   let sum = 0;
-//   let maxSum = 0;
+function maxSum(numbers: number[], k: number): number {
+  let maxSum = 0;
+  let sum = 0;
 
-//   // primeira janela
-//   for (let i = 0; i < k; i++) {
-//     sum += numbers[i];
-//   }
+  for (let i = 0; i < k; i++) {
+    sum += numbers[i];
+  }
 
-//   maxSum = sum;
+  maxSum = sum;
 
-//   // movimenta a janela
-//   for (let i = 0; i < numbers.length - k; i++) {
-//     sum -= numbers[i]; // sai
-//     sum += numbers[i + k]; // entra
+  for (let i = 0; i < numbers.length - k; i++) {
+    sum -= numbers[i];
+    sum += numbers[i + k];
 
-//     if (sum > maxSum) {
-//       maxSum = sum;
-//     }
-//   }
-
-//   return maxSum;
-// }
-
-function maxSum(numbers: number[], k: number): number {}
+    if (sum > maxSum) {
+      maxSum = sum;
+    }
+  }
+  return maxSum;
+}
 
 function printMultipleOfFive(): void {
   let result = [];
@@ -613,6 +608,97 @@ function sumMultiplesOfFive(): number {
 
 //   return result;
 // }
+
+// [1, 12, -5, -6, 50, 3]
+function maxAverage(numbers: number[], k: number): number {
+  let sum = 0;
+  let average = 0;
+  let maxAverage = 0;
+
+  for (let i = 0; i < k; i++) {
+    sum += numbers[i];
+  }
+
+  maxAverage = sum / k;
+
+  for (let i = 0; i < numbers.length - k; i++) {
+    sum -= numbers[i];
+    sum += numbers[i + k];
+    average = sum / k;
+    if (average > maxAverage) {
+      maxAverage = average;
+    }
+  }
+
+  return maxAverage;
+}
+
+function minSum(numbers: number[], k: number): number {
+  let minSum = 0;
+  let sum = 0;
+  for (let i = 0; i < k; i++) {
+    sum += numbers[i];
+  }
+
+  minSum = sum;
+
+  for (let i = 0; i < numbers.length - k; i++) {
+    sum -= numbers[i];
+    sum += numbers[i + k];
+    if (sum < minSum) {
+      minSum = sum;
+    }
+  }
+  return minSum;
+}
+
+function countWindowsAbove(
+  numbers: number[],
+  k: number,
+  target: number,
+): number {
+  let counter = 0;
+  let sum = 0;
+
+  for (let i = 0; i < k; i++) {
+    sum += numbers[i];
+  }
+
+  if (sum > target) {
+    counter += 1;
+  }
+
+  for (let i = 0; i < numbers.length - k; i++) {
+    sum -= numbers[i];
+    sum += numbers[i + k];
+    if (sum > target) {
+      counter += 1;
+    }
+  }
+
+  return counter;
+}
+
+function biggestConsecutiveSum(numbers: number[], k: number): number {
+  let sum = 0;
+  let maxSum = 0;
+
+  for (let i = 0; i < k; i++) {
+    sum += numbers[i];
+  }
+
+  maxSum = sum;
+
+  for (let i = 0; i < numbers.length - k; i++) {
+    sum -= numbers[i];
+    sum += numbers[i + k];
+    if (sum > maxSum) {
+      maxSum = sum;
+    }
+  }
+
+  return maxSum;
+}
 
 // function countNumbersGreaterThan(
 //   numbers: number[],
