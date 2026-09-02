@@ -550,3 +550,73 @@ function findExactlyTwice(numbers: number[]): number[] {
 //   }
 //   return mostFrequent;
 // }
+
+// function maxSum(numbers: number[], k: number): number {
+//   let sum = 0;
+//   let maxSum = 0;
+
+//   // primeira janela
+//   for (let i = 0; i < k; i++) {
+//     sum += numbers[i];
+//   }
+
+//   maxSum = sum;
+
+//   // movimenta a janela
+//   for (let i = 0; i < numbers.length - k; i++) {
+//     sum -= numbers[i]; // sai
+//     sum += numbers[i + k]; // entra
+
+//     if (sum > maxSum) {
+//       maxSum = sum;
+//     }
+//   }
+
+//   return maxSum;
+// }
+
+function maxSum(numbers: number[], k: number): number {}
+
+function printMultipleOfFive(): void {
+  let result = [];
+  let multiple = 0;
+  while (multiple <= 95) {
+    multiple = multiple + 5;
+    result.push(multiple);
+  }
+  console.log(result);
+}
+
+//5 + 10 + 15 + ... + 100
+function sumMultiplesOfFive(): number {
+  let sum = 0;
+  let acumulador = [];
+  let result = 0;
+  while (sum <= 95) {
+    sum = +sum + 5;
+    acumulador.push(sum);
+  }
+  for (let i = 0; acumulador.length > i; i++) {
+    result = +result + acumulador[i];
+  }
+  return result;
+}
+
+// function sumMultiplesOfFive(): number {
+//   let sum = 0;
+//   let result = 0;
+
+//   while (sum <= 95) {
+//     sum = sum + 5;
+//     result = result + sum;
+//   }
+
+//   return result;
+// }
+
+// function countNumbersGreaterThan(
+//   numbers: number[],
+//   target: number
+// ): number {
+
+// }
