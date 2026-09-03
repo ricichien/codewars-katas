@@ -124,9 +124,128 @@ function findBiggestNumberPosition(numbers: number[]) {
 
 // Bloco 3 — Map/Set (contagem e presença)**
 // 9. Dado um array de strings, retorne `true` se houver alguma palavra repetida (case-insensitive).
+
+function areThereAnyRepeatedWords(strings: string[]): boolean {
+  for (let i = 0; i < strings.length; i++) {
+    let text = strings[i].toLowerCase();
+    for (let j = i + 1; j < strings.length; j++) {
+      if (text === strings[j].toLowerCase()) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+// function areThereAnyRepeatedWords(strings: string[]): boolean {
+//   const seen = new Set<string>();
+
+//   for (let i = 0; i < strings.length; i++) {
+//     const word = strings[i].toLowerCase();
+
+//     if (seen.has(word)) {
+//       return true;
+//     }
+
+//     seen.add(word);
+//   }
+
+//   return false;
+// }
+
 // 10. Dado um array de números, retorne quantos valores **distintos\*\* existem.
+
+function countDistinctValues(numbers: number[]) {
+  const seen = new Set<number>();
+  let counter = 0;
+
+  for (let i = 0; i < numbers.length; i++) {
+    const num = numbers[i];
+
+    if (!seen.has(num)) {
+      seen.add(num);
+      counter += 1;
+    }
+  }
+  return counter;
+}
+
 // 11. Dado um array de strings, retorne a palavra que mais se repete (desempate: a que aparece primeiro).
+
+function mostRepeatedWord(strings: string[]) {
+  let mostRepeatedWord = "";
+  let times = 0;
+  let map = new Map<string, number>();
+  for (let i = 0; i < strings.length; i++) {
+    if (map.has(strings[i])) {
+      let word = map.get(strings[i])!;
+      map.set(strings[i], word + 1);
+    } else {
+      map.set(strings[i], 1);
+    }
+  }
+  for (const [word, value] of map) {
+    if (value > times) {
+      times = value;
+      mostRepeatedWord = word;
+    }
+  }
+  return mostRepeatedWord;
+}
+
 // 12. Dados dois arrays de números, retorne `true` se eles têm exatamente os mesmos elementos, ignorando a ordem.
+
+function hasSameElements(arrayOne: number[], arrayTwo: number[]): boolean {
+  let mapOne = new Map<number, number>();
+  let mapTwo = new Map<number, number>();
+  if (arrayOne.length != arrayTwo.length) {
+    return false;
+  }
+
+  for (let i = 0; i < arrayOne.length; i++) {
+    if (mapOne.has(arrayOne[i])) {
+      let word = mapOne.get(arrayOne[i])!;
+      mapOne.set(arrayOne[i], word + 1);
+    } else {
+      mapOne.set(arrayOne[i], 1);
+    }
+  }
+  for (let j = 0; j < arrayTwo.length; j++) {
+    if (mapTwo.has(arrayTwo[j])) {
+      let word = mapTwo.get(arrayTwo[j])!;
+      mapTwo.set(arrayTwo[j], word + 1);
+    } else {
+      mapTwo.set(arrayTwo[j], 1);
+    }
+  }
+
+  for (const [number, frequency] of mapOne) {
+    if (mapTwo.get(number) !== frequency) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// function smallestDifference(numbers: number[]): number {
+//   let smallest = Infinity;
+
+//   let left = 0;
+//   let right = 1;
+
+//   while (right < numbers.length) {
+//     const difference = numbers[right] - numbers[left];
+
+//     if (difference < smallest) {
+//       smallest = difference;
+//     }
+
+//     left++;
+//     right++;
+//   }
+
+//   return smallest;
+// }
 
 // Bloco 4 — Dois ponteiros / sliding window (misturado, sem avisar qual)**
 // 13. Dado um array de números ordenado, retorne o par de números com a **menor diferença\*\* entre eles.
