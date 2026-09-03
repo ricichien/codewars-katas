@@ -62,3 +62,25 @@ function hasDuplicate(numbers: number[]): boolean {
   }
   return false;
 }
+
+// findFirstGreater([2, 5, 8, 3, 10], 6)
+// // 8
+
+// findFirstGreater([1, 2, 3], 5)
+// // undefined
+
+// findFirstGreater([10, 4, 7], 6)
+// // 10
+
+function findFirstGreater(
+  numbers: number[],
+  target: number,
+): number | undefined {
+  let greater = numbers[0];
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] > target) {
+      return (greater = numbers[i]);
+    }
+  }
+  return undefined;
+}

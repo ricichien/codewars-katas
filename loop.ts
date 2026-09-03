@@ -700,6 +700,33 @@ function biggestConsecutiveSum(numbers: number[], k: number): number {
   return maxSum;
 }
 
+function findMissingNumber(numbers: number[]): number {
+  let missingNumber = 0;
+  let expectedValue = 0;
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  for (let i = 0; i < numbers.length + 2; i++) {
+    expectedValue += i;
+  }
+  if (expectedValue > sum) {
+    missingNumber = expectedValue - sum;
+  }
+  return missingNumber;
+}
+
+// function findMissingNumber(numbers: number[]): number {
+//   const n = numbers.length + 1;
+//   const expected = (n * (n + 1)) / 2;
+//   const actual = numbers.reduce((sum, number) => sum + number, 0);
+
+//   return expected - actual;
+// }
+
+// array de 4 = 1,2,4,5 = 12
+// expected value = 1,2,3,4 = 10
+
 // function countNumbersGreaterThan(
 //   numbers: number[],
 //   target: number
