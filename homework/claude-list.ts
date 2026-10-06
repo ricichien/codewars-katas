@@ -91,7 +91,7 @@ function firstVogal(strings: string[]) {
       letter === "o" ||
       letter === "u"
     ) {
-      return string[i];
+      return strings[i];
     }
   }
   return undefined;
@@ -227,36 +227,230 @@ function hasSameElements(arrayOne: number[], arrayTwo: number[]): boolean {
   return true;
 }
 
-// function smallestDifference(numbers: number[]): number {
-//   let smallest = Infinity;
-
-//   let left = 0;
-//   let right = 1;
-
-//   while (right < numbers.length) {
-//     const difference = numbers[right] - numbers[left];
-
-//     if (difference < smallest) {
-//       smallest = difference;
-//     }
-
-//     left++;
-//     right++;
-//   }
-
-//   return smallest;
-// }
-
 // Bloco 4 — Dois ponteiros / sliding window (misturado, sem avisar qual)**
 // 13. Dado um array de números ordenado, retorne o par de números com a **menor diferença\*\* entre eles.
+
+function returnPairOfElements(numbers: number[]) {
+  let pairOfElements: number[] = [];
+
+  let left = 0;
+  let right = 1;
+
+  let smallerDifference = numbers[right] - numbers[left];
+  while (right < numbers.length) {
+    let difference = numbers[right] - numbers[left];
+
+    if (difference < smallerDifference) {
+      smallerDifference = difference;
+      pairOfElements = [numbers[left], numbers[right]];
+    }
+
+    right++ + left++;
+  }
+  return pairOfElements;
+}
+
 // 14. Dado um array de números e um valor `k`, retorne `true` se existir algum subarray de tamanho `k` cuja soma seja igual a um valor alvo.
+
+function hasSubarrayWithTargetSum(
+  numbers: number[],
+  target: number,
+  k: number,
+) {
+  let sum = 0;
+
+  for (let i = 0; i < k; i++) {
+    sum += numbers[i];
+  }
+
+  if (sum === target) {
+    return true;
+  }
+
+  for (let i = 0; i < numbers.length - 1; i++) {
+    sum -= numbers[i];
+    sum += numbers[i + k];
+    if (sum === target) {
+      return true;
+    }
+  }
+  return false;
+}
+
 // 15. Dada uma string, retorne `true` se ela pode virar um palíndromo removendo no máximo 1 caractere.
+
+function isPalindromeRange(
+  string: string,
+  left: number,
+  right: number,
+): boolean {
+  while (left < right) {
+    if (string[left] !== string[right]) {
+      return false;
+    }
+
+    left++;
+    right--;
+  }
+
+  return true;
+}
+
+function isPalindrome(string: string): boolean {
+  let left = 0;
+  let right = string.length - 1;
+
+  while (left < right) {
+    if (string[left] === string[right]) {
+      left++;
+      right--;
+    } else {
+      return (
+        isPalindromeRange(string, left + 1, right) ||
+        isPalindromeRange(string, left, right - 1)
+      );
+    }
+  }
+  return true;
+}
+
 // 16. Dado um array de números, encontre o menor subarray contíguo cuja soma seja maior ou igual a um valor alvo (tamanho variável, não fixo).
+
+function smallerSubarray(target: number, numbers: number[]): number {
+  let left = 0;
+  let sum = 0;
+  let minLength = Infinity;
+
+  for (let right = 0; right < numbers.length; right++) {
+    // 1. Aumenta a janela
+    sum += numbers[right];
+
+    // 2. Enquanto a janela já atingir o target,
+    //    tenta diminuir ela pela esquerda
+    while (sum >= target) {
+      const currentLength = right - left + 1;
+
+      if (currentLength < minLength) {
+        minLength = currentLength;
+      }
+
+      sum -= numbers[left];
+      left++;
+    }
+  }
+
+  // Se nunca encontrou uma janela válida
+  if (minLength === Infinity) {
+    return 0;
+  }
+
+  return minLength;
+}
 
 // Bloco 5 — Manipulação/transformação de array\*\*
 // 17. Dado um array de números, mova todos os zeros para o final, mantendo a ordem relativa dos outros números (sem usar `filter`/`sort`).
+
+function moveZerosToEnd(numbers: number[]): number[] {
+  const result: number[] = [];
+  let zeros = 0;
+
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] === 0) {
+      zeros++;
+    } else {
+      result.push(numbers[i]);
+    }
+  }
+
+  for (let i = 0; i < zeros; i++) {
+    result.push(0);
+  }
+
+  return result;
+}
+
 // 18. Dado um array de números, retorne um novo array onde cada posição é o produto de todos os outros elementos, exceto o da própria posição (sem usar divisão).
+
+function productExceptSelf(numbers: number[]): number[] {
+  const result = new Array(numbers.length).fill(1);
+
+  let leftProduct = 1;
+
+  for (let i = 0; i < numbers.length; i++) {
+    result[i] = leftProduct;
+    leftProduct *= numbers[i];
+  }
+
+  let rightProduct = 1;
+
+  for (let i = numbers.length - 1; i >= 0; i--) {
+    result[i] *= rightProduct;
+    rightProduct *= numbers[i];
+  }
+
+  return result;
+}
+
 // 19. Dado um array de objetos `{ nome: string, idade: number }`, retorne os nomes ordenados por idade (do mais novo pro mais velho), sem usar `.sort()`.
+
+function sortByAge(people: { nome: string; idade: number }[]): string[] {
+  const copy = [...people];
+
+  for (let i = 0; i < copy.length; i++) {
+    let youngest = i;
+
+    for (let j = i + 1; j < copy.length; j++) {
+      if (copy[j].idade < copy[youngest].idade) {
+        youngest = j;
+      }
+    }
+
+    const temp = copy[i];
+    copy[i] = copy[youngest];
+    copy[youngest] = temp;
+  }
+
+  return copy.map((person) => person.nome);
+}
 
 // Bloco 6 — Estilo "tarefa real" (não é LeetCode puro)\*\*
 // 20. Você recebe um array de logs de acesso, cada um no formato `{ userId: string, timestamp: number }`. Escreva uma função que retorne, para cada usuário, o intervalo (em ms) entre seu primeiro e último acesso registrado.
+
+function getUserAccessIntervals(
+  logs: { userId: string; timestamp: number }[],
+): Map<string, number> {
+  const users = new Map<
+    string,
+    {
+      first: number;
+      last: number;
+    }
+  >();
+
+  for (const log of logs) {
+    if (!users.has(log.userId)) {
+      users.set(log.userId, {
+        first: log.timestamp,
+        last: log.timestamp,
+      });
+    } else {
+      const user = users.get(log.userId)!;
+
+      if (log.timestamp < user.first) {
+        user.first = log.timestamp;
+      }
+
+      if (log.timestamp > user.last) {
+        user.last = log.timestamp;
+      }
+    }
+  }
+
+  const result = new Map<string, number>();
+
+  for (const [userId, data] of users) {
+    result.set(userId, data.last - data.first);
+  }
+
+  return result;
+}

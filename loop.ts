@@ -370,19 +370,19 @@ function soloNumber(numbers: number[]): number[] {
 }
 
 // radar
-function isPalindrome(text: string): boolean {
-  let left = 0;
-  let right = text.length - 1;
-  while (left < right) {
-    if (text[left] !== text[right]) {
-      return false;
-    } else if (text[left] === text[right]) {
-      right--;
-      left++;
-    }
-  }
-  return true;
-}
+// function isPalindrome(text: string): boolean {
+//   let left = 0;
+//   let right = text.length - 1;
+//   while (left < right) {
+//     if (text[left] !== text[right]) {
+//       return false;
+//     } else if (text[left] === text[right]) {
+//       right--;
+//       left++;
+//     }
+//   }
+//   return true;
+// }
 
 function isPalindromeNumber(numbers: number[]): boolean {
   let first = 0;
@@ -700,21 +700,23 @@ function biggestConsecutiveSum(numbers: number[], k: number): number {
   return maxSum;
 }
 
-function findMissingNumber(numbers: number[]): number {
-  let missingNumber = 0;
-  let expectedValue = 0;
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers[i];
-  }
-  for (let i = 0; i < numbers.length + 2; i++) {
-    expectedValue += i;
-  }
-  if (expectedValue > sum) {
-    missingNumber = expectedValue - sum;
-  }
-  return missingNumber;
-}
+// function findMissingNumber(numbers: number[]): number {
+//   let missingNumber = 0;
+//   let expectedValue = 0;
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) {
+//     sum += numbers[i];
+//   }
+//   for (let i = 0; i < numbers.length + 2; i++) {
+//     expectedValue += i;
+//   }
+//   if (expectedValue > sum) {
+//     missingNumber = expectedValue - sum;
+//   }
+//   return missingNumber;
+// }
+
+// chatgpt solution ->
 
 // function findMissingNumber(numbers: number[]): number {
 //   const n = numbers.length + 1;

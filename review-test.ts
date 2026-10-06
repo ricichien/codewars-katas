@@ -84,3 +84,110 @@ function findFirstGreater(
   }
   return undefined;
 }
+
+// numbers = [4, 5, 2, 9, 4]
+function sortByIncreasing(numbers: number[]): number[] {
+  for (let i = 0; i < numbers.length; i++) {
+    let smallerIndex = i;
+    for (let j = i + 1; j < numbers.length; j++) {
+      if (numbers[j] < numbers[smallerIndex]) {
+        smallerIndex = j;
+      }
+    }
+    [numbers[i], numbers[smallerIndex]] = [numbers[smallerIndex], numbers[i]];
+  }
+  return numbers;
+}
+
+// numbers = [1, 2, 4, 6, 8, 9]
+
+function hasPairWithTargetSum(numbers: number[], target: number) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = i + 1; j < numbers.length; j++) {
+      if (numbers[i] + numbers[j] === target) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function hasPairWithTargetSumTwoPointers(
+  numbers: number[],
+  target: number,
+): boolean {
+  let left = 0;
+  let right = numbers.length - 1;
+
+  while (left < right) {
+    let sum = numbers[left] + numbers[right];
+    if (sum > target) {
+      right--;
+    } else if (sum < target) {
+      left++;
+    } else return true;
+  }
+
+  return false;
+}
+
+function maxSumWindow(numbers: number[], k: number): number {
+  let sum = 0;
+  let maxSum = 0;
+
+  for (let i = 0; i < k; i++) {
+    sum += numbers[i];
+  }
+
+  maxSum = sum;
+
+  for (let j = 0; j < numbers.length - k; j++) {
+    sum -= numbers[j];
+    sum += numbers[j + k];
+    if (sum > maxSum) {
+      maxSum = sum;
+    }
+  }
+  return maxSum;
+}
+
+function minSubarray(numbers: number[], target: number): number {
+  let minLength = Infinity;
+  let minSum = 0;
+  let left = 0;
+
+  for (let right = 0; right < numbers.length; right++) {
+    minSum += numbers[right];
+    while (minSum >= target) {
+      let currentLength = right - left + 1;
+      minSum -= numbers[left];
+      left++;
+      if (currentLength < minLength) {
+        minLength = currentLength;
+      }
+    }
+  }
+
+  if (minLength === Infinity) {
+    minLength = 0;
+  }
+
+  return minLength;
+}
+
+function minDifference(numbers: number[], target: number) {
+  let left = 0;
+  let right = numbers.length - 1;
+  let minDifference = numbers[right] - numbers[left];
+
+  while (left < right) {
+    minDifference = numbers[right] - numbers[left];
+    if (minDifference > target) {
+      right--;
+    } else if (minDifference < target) {
+      left++;
+    } else return true;
+  }
+  return false;
+}
