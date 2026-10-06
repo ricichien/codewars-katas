@@ -26,6 +26,9 @@ function sumEqualTarget(target: number, numbers: number[]) {
     if (sum > target) {
       right--;
     }
+    if (sum === target) {
+      return (result = result = [numbers[left], numbers[right]]);
+    }
   }
   return result;
 }
