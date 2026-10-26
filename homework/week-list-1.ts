@@ -122,3 +122,22 @@ function isThreeSumEqualZero(numbers: number[]) {
 
 //   return false;
 // }
+
+// Dado array ordenado e target, retorne true se
+// existem dois números cuja diferença absoluta
+// seja exatamente target.
+
+function hasExactDifference(numbers: number[], target: number): boolean {
+  let start = 0;
+  let end = numbers.length - 1;
+  while (start < end) {
+    if (numbers[end] - numbers[start] === target) return true;
+    else if (numbers[end] - numbers[start] < target) start++;
+    else end--;
+  }
+  return false;
+}
+
+// Dado array de inteiros, retorne true se existem
+// três números que somam zero. Decomponha
+// antes de codar.
