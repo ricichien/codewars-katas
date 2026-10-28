@@ -141,3 +141,23 @@ function hasExactDifference(numbers: number[], target: number): boolean {
 // Dado array de inteiros, retorne true se existem
 // três números que somam zero. Decomponha
 // antes de codar.
+
+// Mesmo do ThreeSums
+
+// Recebe lista de ops { tipo: "deposito"|"saque",
+// valor }. Saque que deixa saldo negativo é
+// ignorado. Retorne saldo final
+
+function simpleSafe(ops: { type: "deposit" | "withdraw"; balance: number }[]) {
+  let finalBalance = 0;
+  for (const op of ops) {
+    if (op.type === "deposit") {
+      finalBalance += op.balance;
+    }
+    if (op.type === "withdraw" && finalBalance - op.balance >= 0) {
+      finalBalance -= op.balance;
+    }
+  }
+
+  return finalBalance;
+}
