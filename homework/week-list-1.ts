@@ -161,3 +161,19 @@ function simpleSafe(ops: { type: "deposit" | "withdraw"; balance: number }[]) {
 
   return finalBalance;
 }
+
+// Começa com 100 HP. Eventos positivos curam,
+// negativos causam dano. Se HP ≤ 0, pare e
+// retorne o índice da morte. Se sobreviver, retorne
+// -1.
+
+function lifeGame(numbers: number[]) {
+  let lifeBar = 100;
+  for (let i = 0; i < numbers.length; i++) {
+    lifeBar += numbers[i];
+    if (lifeBar <= 0) {
+      return i;
+    }
+  }
+  return -1;
+}
